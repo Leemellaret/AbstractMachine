@@ -10,19 +10,22 @@ namespace AbstractMachine
     {
         static void Main(string[] args)
         {
-            RangeDomain<int> domain = new RangeDomain<int>(0, 1);
+            var domain = DomainBuilder<Integer>.CreateEmptyBuilder()
+                                               .AddRange(0, 1)
+                                               .Build();
 
-            var tableBuilder = new TableMappingBuilder<int, int, int>();
-            tableBuilder.AddRow((0, 0), (0, 0));
-            tableBuilder.AddRow((0, 1), (1, 0));
-            tableBuilder.AddRow((1, 0), (1, 1));
-            tableBuilder.AddRow((1, 1), (0, 1));
 
-            var table = new TableMapping<int, int, int>(tableBuilder);
+            var table = TableMappingBuilder<Integer, Integer, Integer>.CreateEmptyBuilder()
+                                                                      .AddRow((0, 0), (0, 0))
+                                                                      .AddRow((0, 1), (1, 0))
+                                                                      .AddRow((1, 0), (1, 1))
+                                                                      .AddRow((1, 1), (0, 1))
+                                                                      .Build();
 
-            var abstractMachine = new AbstractMachine<int, int, int>(domain, domain, domain, table, new Information<int>(1, domain));
 
-            Console.WriteLine($"a(0) = {abstractMachine.Process(new Information<int>(1, domain))}");
+            var abstractMachine = new AbstractMachine<Integer, Integer, Integer>(domain, domain, domain, table, new Information<Integer>(1, domain));
+
+            Console.WriteLine($"a(0) = {abstractMachine.Process(new Information<Integer>(1, domain))}");
             Console.WriteLine($"a.CS = {abstractMachine.CurrentState}");
             Console.ReadLine();
         }

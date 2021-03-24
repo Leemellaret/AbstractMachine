@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace AbstractMachine
 {
     public class Information<T>
+        where T : IValue<T>
     {
         public T Value { get; }
         public IDomain<T> Domain { get; }
@@ -31,7 +32,7 @@ namespace AbstractMachine
                 return false;
             if (ReferenceEquals(this, obj))
                 return true;
-            if(!GetType().Equals(obj.GetType()))
+            if (!GetType().Equals(obj.GetType()))
                 return false;
 
             var castedObj = (Information<T>)obj;

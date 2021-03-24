@@ -45,6 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractMachine.cs" />
+    <Compile Include="Domains\DomainBuilder.cs" />
+    <Compile Include="Domains\HybridDomain.cs" />
+    <Compile Include="Domains\Integer.cs" />
+    <Compile Include="Domains\IValue.cs" />
     <Compile Include="Domains\RangeDomain.cs" />
     <Compile Include="Mappings\Map.cs" />
     <Compile Include="Mappings\MappingData.cs" />

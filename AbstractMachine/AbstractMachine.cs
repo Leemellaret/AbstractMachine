@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace AbstractMachine
 {
     public class AbstractMachine<TInput, TOutput, TState> : IAbstractMachine<TInput, TOutput, TState>
+        where TInput : IValue<TInput>
+        where TOutput : IValue<TOutput>
+        where TState : IValue<TState>
     {
         public IDomain<TInput> InputDomain { get; }
 
@@ -24,16 +27,16 @@ namespace AbstractMachine
             OutputDomain = outputDomain;
             StateDomain = stateDomain;
 
-            
+
             if (!MappingValidityChecker.IsMappingInDomains(mapping, inputDomain, outputDomain, stateDomain))
                 throw new ArgumentOutOfRangeException(nameof(mapping), "Mapping not in domains."); //TODO: написать нормальный message
-            
+
             Mapping = mapping;
 
-            
+
             if (!stateDomain.Contains(initialState))
                 throw new ArgumentOutOfRangeException(nameof(initialState), "Given initial state is not in StateDomain.");
-            
+
             CurrentState = initialState;
         }
 
@@ -41,10 +44,10 @@ namespace AbstractMachine
         {
             var mappingInput = new MappingData<TInput, TState>(input.Value, CurrentState.Value);
 
-            
+
             if (!Mapping.CanMap(mappingInput))
                 throw new Exception("Mapping cannot process given input with current state");//TODO: создать своё исключение для этого случая
-            
+
             var mappingOutput = Mapping.Process(mappingInput);
 
             CurrentState = new Information<TState>(mappingOutput.State, StateDomain);

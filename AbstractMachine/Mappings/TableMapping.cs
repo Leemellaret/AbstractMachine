@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class TableMapping<TInput, TOutput, TState> : IMapping<TInput, TOutput, TState>
+    public class TableMapping<TInput, TOutput, TState> : IMapping<TInput, TOutput, TState>//TODO: нужно ли здесь, чтобы типы-параметры реализовывали IValue?
+        where TInput : IValue<TInput>
+        where TOutput : IValue<TOutput>
+        where TState : IValue<TState>
     {
         private Dictionary<MappingData<TInput, TState>, MappingData<TOutput, TState>> table;
 

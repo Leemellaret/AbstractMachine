@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public interface IDomain<T> : IEnumerable<T>
-        where T : IValue<T>
+    public interface IValue<T> : IComparable<T>
     {
-        bool Contains(T value);
+        T GetNextValue();
+        T GetPreviousValue();
     }
 }

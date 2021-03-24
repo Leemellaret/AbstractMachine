@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace AbstractMachine
 {
     class RangeDomain<T> : IDomain<T>
-        where T : IComparable<T>
+        where T : IValue<T>
     {
         public T Start { get; }
         public T End { get; }
@@ -27,6 +28,19 @@ namespace AbstractMachine
             bool lessOrEqualThanEnd = End.CompareTo(value) >= 0;
 
             return biggerOrEqualThanStart && lessOrEqualThanEnd;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (T v = Start; v.CompareTo(End) <= 0; v = v.GetNextValue())
+            {
+                yield return v;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

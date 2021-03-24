@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public interface IDomain<T> : IEnumerable<T>
-        where T : IValue<T>
+    class HybridDomain //TODO: нужен ли этот класс, оправдывает ли он себя?
     {
-        bool Contains(T value);
     }
 }

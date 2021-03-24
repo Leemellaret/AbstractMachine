@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class MappingData<TData, TState>
+    public class MappingData<TData, TState>//TODO: нужно ли здесь, чтобы типы-параметры реализовывали IValue?
+        where TData : IValue<TData>
+        where TState : IValue<TState>
     {
         public TData Data { get; }
         public TState State { get; }
@@ -38,6 +40,11 @@ namespace AbstractMachine
         public override int GetHashCode()
         {
             return (Data, State).GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"Data={Data} State={State}";
         }
     }
 }
