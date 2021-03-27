@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class DomainBuilder<T> //TODO: нормально ли я делаю билдеры? может лучше вместо this возвращать новый экземпляр?
-                                  //TODO: Может отказаться от этого билдера вовсе и сделать extension методы для IDomain?
+    public class DomainBuilder<T>
         where T : IValue<T>
     {
         private HashSet<T> result;
@@ -48,6 +47,25 @@ namespace AbstractMachine
                 result.Add(value);
             }
 
+            return this;
+        }
+
+        public DomainBuilder<T> RemoveValue(T value)
+        {
+            result.Remove(value);
+
+            return this;
+        }
+
+        public DomainBuilder<T> RemoveRange(T start, T end)
+        {
+            var range = new RangeDomain<T>(start, end);
+
+            foreach (var value in range)
+            {
+                result.Remove(value);
+            }
+            
             return this;
         }
 
