@@ -21,6 +21,8 @@ namespace AbstractMachine
 
         public Information<TState> CurrentState { get; private set; }
 
+        public Information<TState> InitialState { get; }
+
         public MappingAbstractMachine(IDomain<TInput> inputDomain, IDomain<TOutput> outputDomain, IDomain<TState> stateDomain, IMapping<TInput, TOutput, TState> mapping, Information<TState> initialState)
         {
             InputDomain = inputDomain;
@@ -37,6 +39,7 @@ namespace AbstractMachine
             if (!stateDomain.Contains(initialState))
                 throw new ArgumentOutOfRangeException(nameof(initialState), "Given initial state is not in StateDomain.");
 
+            InitialState = initialState;
             CurrentState = initialState;
         }
 
