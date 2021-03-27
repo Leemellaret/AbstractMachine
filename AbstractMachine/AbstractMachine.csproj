@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domains\DomainOperationsExtensions.cs" />
+    <Compile Include="Domains\DomainOperations.cs" />
     <Compile Include="Domains\IDomainBuilder.cs" />
     <Compile Include="IBuilder.cs" />
     <Compile Include="MappingAbstractMachine.cs" />
