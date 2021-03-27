@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class TableMappingBuilder<TInput, TOutput, TState>//TODO: нормально ли я делаю билдеры? может лучше вместо this возвращать новый экземпляр?
+    public class TableMappingBuilder<TInput, TOutput, TState>
     {
         private Dictionary<MappingData<TInput, TState>, MappingData<TOutput, TState>> rows;
 
@@ -22,7 +22,7 @@ namespace AbstractMachine
 
             rows.Add(input, output);
 
-            return this;//TODO: is this correct and will not cause problems?
+            return this;
         }
 
         public TableMappingBuilder<TInput, TOutput, TState> RemoveRow(MappingData<TInput, TState> input)
@@ -32,7 +32,7 @@ namespace AbstractMachine
 
             rows.Remove(input);
 
-            return this;//TODO: is this correct and will not cause problems?
+            return this;
         }
 
         public bool IsRowExist(MappingData<TInput, TState> input)

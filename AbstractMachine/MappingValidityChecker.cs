@@ -13,7 +13,6 @@ namespace AbstractMachine
             where TOutput : IValue<TOutput>
             where TState : IValue<TState>
         {
-            //TODO: написать нормальное название для метода
             foreach (var map in mapping)
             {
                 if (!inputDomain.Contains(map.InputValue))

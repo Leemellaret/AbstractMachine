@@ -28,9 +28,9 @@ namespace AbstractMachine
             return new Integer(Value - 1);
         }
 
-        public static implicit operator int(Integer n)//TODO: дать нормальное название параметру
+        public static implicit operator int(Integer integer)
         {
-            return n.Value;
+            return integer.Value;
         }
 
         public static implicit operator Integer(int n)

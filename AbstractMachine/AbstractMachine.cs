@@ -29,7 +29,7 @@ namespace AbstractMachine
 
 
             if (!MappingValidityChecker.IsMappingInDomains(mapping, inputDomain, outputDomain, stateDomain))
-                throw new ArgumentOutOfRangeException(nameof(mapping), "Mapping not in domains."); //TODO: написать нормальный message
+                throw new ArgumentOutOfRangeException(nameof(mapping), "At least one of values in given mapping is not in its domain.");
 
             Mapping = mapping;
 
