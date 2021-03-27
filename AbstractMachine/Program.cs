@@ -10,22 +10,19 @@ namespace AbstractMachine
     {
         static void Main(string[] args)
         {
-            var domain = DomainBuilder<Integer>.CreateEmptyBuilder()
-                                               .AddRange(0, 1)
-                                               .Build();
+            var builder = new MappingAbstractMachineBuilder<Integer, Integer, Integer>().AddRangeToInputDomain(0, 1)
+                                                                                        .AddRangeToOutputDomain(0, 1)
+                                                                                        .AddRangeToStateDomain(0, 1)
+                                                                                        .AddRow((0, 0), (0, 0))
+                                                                                        .AddRow((0, 1), (1, 0))
+                                                                                        .AddRow((1, 0), (1, 1))
+                                                                                        .AddRow((1, 1), (0, 1))
+                                                                                        .SetInitialState(1);
 
+            var abstractMachine = builder.CreateInstance();
+            var inputDomain = builder.GetInputDomainInstance();
 
-            var table = TableMappingBuilder<Integer, Integer, Integer>.CreateEmptyBuilder()
-                                                                      .AddRow((0, 0), (0, 0))
-                                                                      .AddRow((0, 1), (1, 0))
-                                                                      .AddRow((1, 0), (1, 1))
-                                                                      .AddRow((1, 1), (0, 1))
-                                                                      .Build();
-
-
-            var abstractMachine = new MappingAbstractMachine<Integer, Integer, Integer>(domain, domain, domain, table, new Information<Integer>(1, domain));
-
-            Console.WriteLine($"a(0) = {abstractMachine.Process(new Information<Integer>(1, domain))}");
+            Console.WriteLine($"a(0) = {abstractMachine.Process(new Information<Integer>(1, inputDomain))}");
             Console.WriteLine($"a.CS = {abstractMachine.CurrentState}");
             Console.ReadLine();
         }

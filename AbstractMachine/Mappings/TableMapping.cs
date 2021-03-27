@@ -11,9 +11,9 @@ namespace AbstractMachine
     {
         private Dictionary<MappingData<TInput, TState>, MappingData<TOutput, TState>> table;
 
-        public TableMapping(TableMappingBuilder<TInput, TOutput, TState> builder)
+        public TableMapping(Dictionary<MappingData<TInput, TState>, MappingData<TOutput, TState>> table)
         {
-            table = builder.Rows;
+            this.table = new Dictionary<MappingData<TInput, TState>, MappingData<TOutput, TState>>(table);
         }
 
         public bool CanMap(MappingData<TInput, TState> value)

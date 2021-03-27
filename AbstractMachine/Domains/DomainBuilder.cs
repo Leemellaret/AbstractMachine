@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class DomainBuilder<T>
+    public class DomainBuilder<T> : IDomainBuilder<T>
         where T : IValue<T>
     {
         private HashSet<T> result;
@@ -31,14 +31,14 @@ namespace AbstractMachine
             return new DomainBuilder<T>(sourceDomain);
         }
 
-        public DomainBuilder<T> AddValue(T value)
+        public IDomainBuilder<T> AddValue(T value)
         {
             result.Add(value);
 
             return this;
         }
 
-        public DomainBuilder<T> AddRange(T start, T end)
+        public IDomainBuilder<T> AddRange(T start, T end)
         {
             var range = new RangeDomain<T>(start, end);
 
@@ -50,14 +50,14 @@ namespace AbstractMachine
             return this;
         }
 
-        public DomainBuilder<T> RemoveValue(T value)
+        public IDomainBuilder<T> RemoveValue(T value)
         {
             result.Remove(value);
 
             return this;
         }
 
-        public DomainBuilder<T> RemoveRange(T start, T end)
+        public IDomainBuilder<T> RemoveRange(T start, T end)
         {
             var range = new RangeDomain<T>(start, end);
 
@@ -69,7 +69,7 @@ namespace AbstractMachine
             return this;
         }
 
-        public IDomain<T> Build()
+        public IDomain<T> CreateInstance()
         {
             return new SetDomain<T>(result);
         }

@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domains\IDomainBuilder.cs" />
+    <Compile Include="IBuilder.cs" />
     <Compile Include="MappingAbstractMachine.cs" />
     <Compile Include="Domains\DomainBuilder.cs" />
     <Compile Include="Domains\HybridDomain.cs" />
@@ -51,6 +53,8 @@
     <Compile Include="Domains\IValue.cs" />
     <Compile Include="Domains\RangeDomain.cs" />
     <Compile Include="IMappingAbstractMachine.cs" />
+    <Compile Include="MappingAbstractMachineBuilder.cs" />
+    <Compile Include="Mappings\IMappingBuilder.cs" />
     <Compile Include="Mappings\Map.cs" />
     <Compile Include="Mappings\MappingData.cs" />
     <Compile Include="IAbstractMachine.cs" />
@@ -59,7 +63,7 @@
     <Compile Include="Domains\SetDomain.cs" />
     <Compile Include="Domains\IDomain.cs" />
     <Compile Include="Domains\Information.cs" />
-    <Compile Include="Mappings\TableMappingBuilder.cs" />
+    <Compile Include="Mappings\MappingBuilder.cs" />
     <Compile Include="MappingValidityChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
