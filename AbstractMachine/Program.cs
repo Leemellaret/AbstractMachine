@@ -23,7 +23,7 @@ namespace AbstractMachine
                                                                       .Build();
 
 
-            var abstractMachine = new AbstractMachine<Integer, Integer, Integer>(domain, domain, domain, table, new Information<Integer>(1, domain));
+            var abstractMachine = new MappingAbstractMachine<Integer, Integer, Integer>(domain, domain, domain, table, new Information<Integer>(1, domain));
 
             Console.WriteLine($"a(0) = {abstractMachine.Process(new Information<Integer>(1, domain))}");
             Console.WriteLine($"a.CS = {abstractMachine.CurrentState}");

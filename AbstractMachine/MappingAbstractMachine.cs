@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class AbstractMachine<TInput, TOutput, TState> : IMappingAbstractMachine<TInput, TOutput, TState>
+    public class MappingAbstractMachine<TInput, TOutput, TState> : IMappingAbstractMachine<TInput, TOutput, TState>
         where TInput : IValue<TInput>
         where TOutput : IValue<TOutput>
         where TState : IValue<TState>
@@ -21,7 +21,7 @@ namespace AbstractMachine
 
         public Information<TState> CurrentState { get; private set; }
 
-        public AbstractMachine(IDomain<TInput> inputDomain, IDomain<TOutput> outputDomain, IDomain<TState> stateDomain, IMapping<TInput, TOutput, TState> mapping, Information<TState> initialState)
+        public MappingAbstractMachine(IDomain<TInput> inputDomain, IDomain<TOutput> outputDomain, IDomain<TState> stateDomain, IMapping<TInput, TOutput, TState> mapping, Information<TState> initialState)
         {
             InputDomain = inputDomain;
             OutputDomain = outputDomain;
