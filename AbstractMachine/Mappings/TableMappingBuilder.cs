@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class TableMappingBuilder<TInput, TOutput, TState>//TODO: нужно ли здесь, чтобы типы-параметры реализовывали IValue?
-                                                             //TODO: нормально ли я делаю билдеры? может лучше вместо this возвращать новый экземпляр?
-        where TInput : IValue<TInput>
-        where TOutput : IValue<TOutput>
-        where TState : IValue<TState>
+    public class TableMappingBuilder<TInput, TOutput, TState>//TODO: нормально ли я делаю билдеры? может лучше вместо this возвращать новый экземпляр?
     {
         private Dictionary<MappingData<TInput, TState>, MappingData<TOutput, TState>> rows;
 
