@@ -42,7 +42,7 @@ namespace AbstractMachine
 
         public override int GetHashCode()
         {
-            return Value.GetHashCode();//TODO: сделать нормально
+            return (Value, Domain).GetHashCode();
         }
 
         public override string ToString()

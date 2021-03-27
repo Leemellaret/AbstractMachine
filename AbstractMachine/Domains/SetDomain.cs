@@ -30,5 +30,34 @@ namespace AbstractMachine
         {
             return GetEnumerator();
         }
+
+        public override int GetHashCode()
+        {
+            int hash = 0;
+            foreach (var v in validValues)
+            {
+                hash = (hash, v).GetHashCode();
+            }
+            return hash;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (!GetType().Equals(obj.GetType()))
+                return false;
+
+            var co = (SetDomain<T>)obj;
+
+            return this.SequenceEqual(co);
+        }
+
+        public override string ToString()
+        {
+            return $"{string.Join(",", validValues)}";
+        }
     }
 }

@@ -42,5 +42,29 @@ namespace AbstractMachine
         {
             return GetEnumerator();
         }
+
+        public override int GetHashCode()
+        {
+            return (Start, End).GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (!GetType().Equals(obj.GetType()))
+                return false;
+
+            var castedObj = (RangeDomain<T>)obj;
+
+            return Start.Equals(castedObj.Start) && End.Equals(castedObj.End);
+        }
+
+        public override string ToString()
+        {
+            return $"[{Start}, {End}]";
+        }
     }
 }
