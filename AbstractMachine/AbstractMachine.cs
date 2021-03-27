@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractMachine
 {
-    public class AbstractMachine<TInput, TOutput, TState> : IAbstractMachine<TInput, TOutput, TState>
+    public class AbstractMachine<TInput, TOutput, TState> : IMappingAbstractMachine<TInput, TOutput, TState>
         where TInput : IValue<TInput>
         where TOutput : IValue<TOutput>
         where TState : IValue<TState>

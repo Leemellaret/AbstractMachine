@@ -50,6 +50,7 @@
     <Compile Include="Domains\Integer.cs" />
     <Compile Include="Domains\IValue.cs" />
     <Compile Include="Domains\RangeDomain.cs" />
+    <Compile Include="IMappingAbstractMachine.cs" />
     <Compile Include="Mappings\Map.cs" />
     <Compile Include="Mappings\MappingData.cs" />
     <Compile Include="IAbstractMachine.cs" />
