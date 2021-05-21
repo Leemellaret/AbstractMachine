@@ -18,7 +18,9 @@ namespace AutomatonInMaze
         {
             this.representation = representation;
         }
-
+        
+        public static ChessMazeInformation L { get; }
+        private static char LAsChar;
         public static ChessMazeInformation N { get; }
         public static ChessMazeInformation E { get; }
         public static ChessMazeInformation S { get; }
@@ -28,6 +30,9 @@ namespace AutomatonInMaze
 
         static ChessMazeInformation()
         {
+            L = new ChessMazeInformation(0b0000);
+            LAsChar = 'l';
+            
             N = new ChessMazeInformation(0b0001);
             E = new ChessMazeInformation(0b0010);
             S = new ChessMazeInformation(0b0100);
@@ -67,12 +72,17 @@ namespace AutomatonInMaze
         {
             try
             {
+                if(c == LAsChar)
+                    return L;
+                else
+                    throw new InvalidOperationException();
+                
                 var res = singles.First(s => s.asChar == c);
                 return res.direction;
             }
-            catch(InvalidOperationException)
+            catch(InvalidOperationException ex)
             {
-                throw new ArgumentOutOfRangeException(nameof(c), "Info can only be 'n', 'e', 's' or 'w'.");
+                throw new ArgumentOutOfRangeException(nameof(c), "Info can only be 'l', 'n', 'e', 's' or 'w'.");
             }
         }
         
@@ -95,10 +105,13 @@ namespace AutomatonInMaze
         
         public override string ToString()
         {
-            var dirs = singles.Where(s => Contains(s.direction))
-                              .Select(s => s.asChar)
-                              .ToArray();
-
+            if(representation == 0)
+                return LAsChar;
+            
+            var dirs = singles
+                .Where(s => Contains(s.direction))
+                .Select(s => s.asChar)
+                .ToArray();
             
             return new string(dirs);
         }
@@ -112,6 +125,8 @@ namespace AutomatonInMaze
         {
             get
             {
+                if(representation == 0)
+                    return true;
                 return singles.Count(s => Contains(s.direction)) == 1;
             }
         }
